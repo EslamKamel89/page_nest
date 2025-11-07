@@ -19,5 +19,5 @@ class Book(BaseModel) :
     is_bestselling=models.BooleanField(default=True)
     
     def __str__(self)->str:
-        return f"title:{self.title}, description:{self.description}, rating:{self.rating}"
+        return f"title:{self.title}, description:{self.description}, rating:{self.rating}, author:{self.author}, is_bestselling:{self.is_bestselling}"
     
