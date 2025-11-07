@@ -7,7 +7,7 @@ class BaseModel(models.Model):
     class Meta :
         abstract=True
 
-class Books(BaseModel) :
+class Book(BaseModel) :
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
     rating = models.IntegerField()
