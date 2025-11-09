@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.urls import reverse
 
 
 class BaseModel(models.Model):
@@ -17,7 +18,9 @@ class Book(BaseModel) :
     ])
     author= models.CharField(max_length=100 , null=True)
     is_bestselling=models.BooleanField(default=True)
-    
+
+    def get_absolute_url(self):
+        return reverse("book_detail", args=[self.id]) # type: ignore
+
     def __str__(self)->str:
         return f"title:{self.title}, description:{self.description}, rating:{self.rating}, author:{self.author}, is_bestselling:{self.is_bestselling}"
-    
