@@ -17,6 +17,7 @@
     </header>
 
     <ul class="space-y-3">
+      {% include 'book_outlet/partials/info-card.html'%}
       <!--prettier-ignore-->
       {% for book in books %}
       {% include "book_outlet/partials/book_card.html"%}

@@ -6,6 +6,6 @@ from . import views
 
 urlpatterns :list[URLPattern]= [
     path('' , views.index , name='home') ,
-    path('<int:id>' , views.show , name='book_detail')
+    path('<slug:slug>' , views.show , name='book_detail')
 
 ]

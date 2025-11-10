@@ -1,0 +1,35 @@
+<div class="w-full mx-auto">
+  <div
+    class="rounded-2xl border border-gray-800 bg-gray-900/70 p-6 shadow-lg backdrop-blur-sm"
+  >
+    <!-- Header -->
+    <h2 class="font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+      📊 Summary
+    </h2>
+
+    <!-- Content -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+      <div
+        class="flex flex-col items-center justify-center rounded-lg bg-gray-800/60 p-4 border border-gray-700"
+      >
+        <span class="text-gray-400 uppercase tracking-wide text-xs"
+          >Total Books</span
+        >
+        <span class="mt-1 text-2xl font-semibold text-white"
+          >{{ total_count }}</span
+        >
+      </div>
+
+      <div
+        class="flex flex-col items-center justify-center rounded-lg bg-gray-800/60 p-4 border border-gray-700"
+      >
+        <span class="text-gray-400 uppercase tracking-wide text-xs"
+          >Average Rating</span
+        >
+        <span class="mt-1 text-2xl font-semibold text-amber-400"
+          >{{ average_rating }}</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
