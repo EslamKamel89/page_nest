@@ -14,7 +14,7 @@ def index(request: HttpRequest)->HttpResponse:
     return render(request , 'book_outlet/index.html' , {
         'books' : books ,
         'star_range' : range(5) ,
-        'average_rating' : average_rating ,
+        'average_rating' : round(average_rating , 2) ,
         'total_count' : total_count ,
     })
 

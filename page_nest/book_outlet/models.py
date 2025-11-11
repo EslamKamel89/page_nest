@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
@@ -21,11 +23,11 @@ class Book(BaseModel) :
     ])
     author= models.CharField(max_length=100 , null=True)
     is_bestselling=models.BooleanField(default=True)
-    slug = models.SlugField(default='' , null=False , db_index=True)
+    slug = models.SlugField(default='' , blank=True , null=False , db_index=True)
 
-    def save(self , *args , **kwargs): # type: ignore
-        self.slug = slugify(self.title)
-        super().save(*args , **kwargs) # type: ignore
+    # def save(self , *args:Any , **kwargs: Any) -> None:
+    #     self.slug = slugify(self.title)
+    #     super().save(*args , **kwargs)
 
     def get_absolute_url(self):
         return reverse("book_detail", args=[self.slug]) # type: ignore
