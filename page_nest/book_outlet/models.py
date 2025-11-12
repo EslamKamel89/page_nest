@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-from typing import Any
-
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
-from django.utils.text import slugify
 
 
 class BaseModel(models.Model):
@@ -14,6 +11,12 @@ class BaseModel(models.Model):
     class Meta :
         abstract=True
 
+class Author(BaseModel) :
+    first_name = models.CharField(max_length=100 )
+    last_name = models.CharField(max_length=100 )
+    def __str__(self)->str :
+        return f"{self.first_name} {self.last_name}"
+
 class Book(BaseModel) :
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
@@ -21,7 +24,8 @@ class Book(BaseModel) :
         MinValueValidator(1) ,
         MaxValueValidator(5)
     ])
-    author= models.CharField(max_length=100 , null=True)
+    # author= models.CharField(max_length=100 , null=True)
+    author = models.ForeignKey(Author , on_delete=models.CASCADE  , null=True)
     is_bestselling=models.BooleanField(default=True)
     slug = models.SlugField(default='' , blank=True , null=False , db_index=True)
 
