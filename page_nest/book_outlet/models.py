@@ -11,12 +11,23 @@ class BaseModel(models.Model):
     class Meta :
         abstract=True
 
+
+
+class Address(models.Model) :
+    street = models.CharField(max_length=255)
+    postal_code = models.CharField(max_length=10)
+    city= models.CharField(max_length=50)
+
+
 class Author(BaseModel) :
     first_name = models.CharField(max_length=100 )
     last_name = models.CharField(max_length=100 )
+    address = models.OneToOneField(Address , on_delete=models.CASCADE , related_name='author' , null=True)
+    def full_name(self ):
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self)->str :
-        return f"{self.first_name} {self.last_name}"
+        return self.full_name()
 
 class Book(BaseModel) :
     title = models.CharField(max_length=100)
@@ -39,3 +50,6 @@ class Book(BaseModel) :
 
     def __str__(self)->str:
         return f"title:{self.title}, description:{self.description}, rating:{self.rating}, author:{self.author}, is_bestselling:{self.is_bestselling}"
+
+
+

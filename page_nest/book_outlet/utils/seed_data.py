@@ -1,14 +1,20 @@
 from django.utils.text import slugify
 from faker import Faker
 
-from ..models import Author, Book
+from ..models import Address, Author, Book
 
 faker = Faker()
 def seed_data(authors_count:int = 10 , books_per_author:int =10):
     for _ in range(authors_count):
+        address = Address.objects.create(
+            street=faker.street_address() ,
+            postal_code= faker.random_int(min=1000 , max=9999).__str__() ,
+            city= faker.city()
+        )
         author = Author.objects.create(
             first_name=faker.first_name() ,
-            last_name = faker.last_name()
+            last_name = faker.last_name() ,
+            address=address
         )
         for _ in range(books_per_author):
             title = faker.sentence(nb_words=4).rstrip('.')
