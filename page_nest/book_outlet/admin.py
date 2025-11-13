@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Author, Book
+from .models import Address, Author, Book
 
 
-class BookAdmin(admin.ModelAdmin):
+class BookAdmin(admin.ModelAdmin): # type: ignore
     # readonly_fields = ('slug',)
     prepopulated_fields = {
         "slug" : ('title' ,)
@@ -13,7 +13,13 @@ class BookAdmin(admin.ModelAdmin):
 
 admin.site.register(Book , BookAdmin)
 
-class AuthorAdmin(admin.ModelAdmin) :
+class AuthorAdmin(admin.ModelAdmin) : # type: ignore
     list_display = ('first_name' , 'last_name' )
 
 admin.site.register(Author , AuthorAdmin)
+
+
+class AddressAdmin(admin.ModelAdmin): # type: ignore
+    list_display = ('street' , 'postal_code' , 'city')
+
+admin.site.register(Address , AddressAdmin)
