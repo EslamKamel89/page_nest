@@ -14,6 +14,7 @@ class BaseModel(models.Model):
 class Author(BaseModel) :
     first_name = models.CharField(max_length=100 )
     last_name = models.CharField(max_length=100 )
+
     def __str__(self)->str :
         return f"{self.first_name} {self.last_name}"
 
@@ -25,7 +26,7 @@ class Book(BaseModel) :
         MaxValueValidator(5)
     ])
     # author= models.CharField(max_length=100 , null=True)
-    author = models.ForeignKey(Author , on_delete=models.CASCADE  , null=True)
+    author = models.ForeignKey(Author , on_delete=models.CASCADE  , null=True , related_name='books')
     is_bestselling=models.BooleanField(default=True)
     slug = models.SlugField(default='' , blank=True , null=False , db_index=True)
 
