@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Address, Author, Book
+from .models import Address, Author, Book, Country
 
 
 class BookAdmin(admin.ModelAdmin): # type: ignore
@@ -24,3 +24,8 @@ class AddressAdmin(admin.ModelAdmin): # type: ignore
     list_filter = ('city',)
 
 admin.site.register(Address , AddressAdmin)
+
+
+class CountryAdmin(admin.ModelAdmin): # type: ignore
+    list_display = ('name' , 'code')
+admin.site.register(Country  , CountryAdmin)

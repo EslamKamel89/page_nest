@@ -16,6 +16,9 @@ class Country(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=2)
 
+    def __str__(self)-> str :
+        return f"{self.name} - {self.code}"
+
 
 class Address(models.Model) :
     street = models.CharField(max_length=255)

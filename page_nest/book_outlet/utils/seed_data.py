@@ -36,6 +36,6 @@ def seed_data(authors_count:int = 10 , books_per_author:int =10 , countries_coun
                 is_bestselling=faker.boolean(chance_of_getting_true=50) ,
                 slug=slugify(title)
             )
-            book.published_countries.set(faker.random_choices(countries , countries_per_book))
+            book.published_countries.set(faker.random_choices(countries , countries_per_book)) # type: ignore
 
     print(f"{authors_count} authors created and each author have {books_per_author} books created")

@@ -22,5 +22,6 @@ def show(request:HttpRequest , slug:str)->HttpResponse :
     book:Book = get_object_or_404(Book ,slug=slug)
     return render(request , 'book_outlet/book_detail.html', {
         'book'  : book ,
+        'countries' : book.published_countries.all() , # type: ignore
         'star_range' : 5
     })

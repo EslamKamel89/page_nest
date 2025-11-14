@@ -28,6 +28,8 @@
   {% else %}
   <p class="text-gray-500 italic mb-6">No description available.</p>
   {% endif %}
+  <!--prettier-ignore-->
+  {% include "book_outlet/partials/countries.html"%}
 
   <!-- Bestseller Badge -->
   {% if book.is_bestselling %}
