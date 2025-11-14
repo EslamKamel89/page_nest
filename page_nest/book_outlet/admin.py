@@ -21,5 +21,6 @@ admin.site.register(Author , AuthorAdmin)
 
 class AddressAdmin(admin.ModelAdmin): # type: ignore
     list_display = ('street' , 'postal_code' , 'city')
+    list_filter = ('city',)
 
 admin.site.register(Address , AddressAdmin)

@@ -5,6 +5,9 @@ from ..models import Address, Author, Book
 
 faker = Faker()
 def seed_data(authors_count:int = 10 , books_per_author:int =10):
+    Author.objects.delete()
+    Address.objects.delete()
+    Book.objects.delete()
     for _ in range(authors_count):
         address = Address.objects.create(
             street=faker.street_address() ,
