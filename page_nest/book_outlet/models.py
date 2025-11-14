@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Optional
+
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
@@ -19,6 +21,9 @@ class Country(models.Model):
     def __str__(self)-> str :
         return f"{self.name} - {self.code}"
 
+    class Meta :
+        verbose_name_plural = 'Countries'
+
 
 class Address(models.Model) :
     street = models.CharField(max_length=255)
@@ -26,7 +31,7 @@ class Address(models.Model) :
     city= models.CharField(max_length=50)
 
     def __str__(self)->str :
-        return f"{self.street}, {self.city} - ({self.postal_code})"
+        return f"{self.street}, {self.city} - Postal Code: {self.postal_code}"
 
     class Meta :
         verbose_name_plural = 'Address Entries'
@@ -49,7 +54,6 @@ class Book(BaseModel) :
         MinValueValidator(1) ,
         MaxValueValidator(5)
     ])
-    # author= models.CharField(max_length=100 , null=True)
     author = models.ForeignKey(Author , on_delete=models.CASCADE  , null=True , related_name='books')
     is_bestselling=models.BooleanField(default=True)
     slug = models.SlugField(default='' , blank=True , null=False , db_index=True)
