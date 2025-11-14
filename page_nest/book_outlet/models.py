@@ -12,6 +12,10 @@ class BaseModel(models.Model):
         abstract=True
 
 
+class Country(models.Model):
+    name = models.CharField(max_length=50)
+    code = models.CharField(max_length=2)
+
 
 class Address(models.Model) :
     street = models.CharField(max_length=255)
@@ -46,7 +50,7 @@ class Book(BaseModel) :
     author = models.ForeignKey(Author , on_delete=models.CASCADE  , null=True , related_name='books')
     is_bestselling=models.BooleanField(default=True)
     slug = models.SlugField(default='' , blank=True , null=False , db_index=True)
-
+    published_countries = models.ManyToManyField(Country , related_name='books') # type: ignore
     # def save(self , *args:Any , **kwargs: Any) -> None:
     #     self.slug = slugify(self.title)
     #     super().save(*args , **kwargs)
